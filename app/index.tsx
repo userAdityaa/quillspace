@@ -1,9 +1,13 @@
 import { ImageBackground } from "expo-image";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
-    <View style = {styles.wrapper}> 
+    <SafeAreaProvider>
+    <View style = {styles.wrapper}>
+
       <ImageBackground
       source={require('../assets/images/background.png')}
       resizeMode = "cover"
@@ -39,9 +43,17 @@ export default function Index() {
           <Text style={styles.buttonText}>Connect with Civic</Text>
         </View>
 
+        <Link href = '/home' asChild>
+          <TouchableOpacity style = {styles.button}>
+
+          </TouchableOpacity>
+      </Link> 
+
+
        <Image source={require('../assets/images/footer_login_image.png')} style = {styles.footerImage}></Image>
       </ImageBackground>
     </View>
+    </SafeAreaProvider>
   );
 }
 
@@ -50,11 +62,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center', 
     alignItems: 'center',
-    backgroundColor: '#fff7e8c8'
+    backgroundColor: '#fff7e8c8', 
+    paddingTop: 40,
+    padding: 5,
   }, 
   cardWrapper: {
     width: '100%', 
-    height: '20%',
+    height: '18%',
     backgroundColor:  '#fff7e8c8',
     padding: 15,
     borderRadius: 15,
@@ -78,10 +92,11 @@ const styles = StyleSheet.create({
     width: '30%',
     fontWeight: 'medium',
     color: '#23150267',
-    fontSize: 14,
+    fontSize: 16,
   }, 
   cardImage: { 
-    width: '40%', 
+    marginLeft: -15,
+    width: '45%', 
     height: '100%',
   },
   backgroundContainer: {
@@ -115,6 +130,12 @@ const styles = StyleSheet.create({
     fontWeight: 300,
     color: '#fff', 
   }, 
+  button: {
+    backgroundColor: "#e16c90ea",
+    padding: 12,
+    borderRadius: 10,
+  },
+  // buttonText: { color: "#fff", fontWeight: "600" },
   buttonWrapper: {
     backgroundColor: '#e16c90ea', 
     paddingVertical: 14,
@@ -135,11 +156,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   footerImage: {
-    width: 500,           
-    height: 410,          
+    width: 600,           
+    height: 590,          
     resizeMode: 'contain', 
     alignSelf: 'center',  
-    marginLeft: 30,
+    marginLeft: 40,
     marginTop: 'auto',     
     marginBottom: 20,    
   },
